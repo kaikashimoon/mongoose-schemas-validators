@@ -12,6 +12,10 @@ const userSchema = new mongoose.Schema({
         type: Number,
         min: 1,
         max: 100,
+        valide: {
+            validator: v => v % 2 === 0,
+            message: props => `{props.value} is not an even number`
+        }
     },
     email: {
         type: String,
