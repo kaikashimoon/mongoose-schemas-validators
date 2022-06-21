@@ -78,23 +78,30 @@ mongoose.connect('mongodb://localhost/dbtest', () => {
 
 // userQuery()
 
-const userQuery= async () => {  
-    try {
-        const user = await User.where('age')
-        .gt(15)
-        .where('name')
-        .equals('kashi')
-        .populate("bestFriend")
-        .limit(2)
-        // .select('age')
-        // user[0].bestFriend = "62b20187593cdf29b9d37246"
-        // await user[0].save()
-        console.log(user)
-    } catch (error) {
+// const userQuery= async () => {  
+//     try {
+//         const user = await User.where('age')
+//         .gt(15)
+//         .where('name')
+//         .equals('kashi')
+//         .populate("bestFriend")
+//         .limit(2)
+//         // .select('age')
+//         // user[0].bestFriend = "62b20187593cdf29b9d37246"
+//         // await user[0].save()
+//         console.log(user)
+//     } catch (error) {
         
-    }
+//     }
+// }
+
+// userQuery()
+
+const findUser = async () => {
+    const user = await User.findOne({name: 'kaileon'})
+    console.log(user)
+    console.log(user.namedEmail)
 }
 
-userQuery()
 
-
+findUser()

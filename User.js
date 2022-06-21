@@ -39,4 +39,31 @@ const userSchema = new mongoose.Schema({
     address: addressSchema
 })
 
+userSchema.methods.sayHi = function () {
+    console.log(`Hello my name is  ${this.name}`)
+}
+
+userSchema.statics.findByName = function (name) {
+    return this.find({name: new RegExp(name, 'i')})
+}
+
+userSchema.query.byName = function (name) {
+    return this.where({name: new RegExp(name, 'i')})
+}
+
+userSchema.virtual('namedEmail').get(function () {
+    return `${this.name} <${this.email}>`
+})
+
+userSchema.pre('save', function (next) {
+    this.updatedAt = Date.now()
+    next()
+})
+
+userSchema.post('save', function (next) {
+    doc.sayHi()
+    next()
+})
+
+
 module.exports = mongoose.model('User', userSchema);
