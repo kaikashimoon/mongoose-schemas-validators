@@ -14,27 +14,27 @@ mongoose.connect('mongodb://localhost/dbtest', () => {
 
 // createUser()
 
-const createUser = async () => {
+// const createUser = async () => {
 
-    try {
-        const user = await User.create({
-            name: 'kaileon', 
-            age: 21,
-            email: 'kaileon@gmail.com',
-            hobbies: ['Bowling', 'Dancing'],
-            address: {
-                street: 'Mountain street'
-            }
+//     try {
+//         const user = await User.create({
+//             name: 'jane', 
+//             age: 21,
+//             email: 'jane@gmail.com',
+//             hobbies: ['Bowling', 'Dancing'],
+//             address: {
+//                 street: 'Mountain street'
+//             }
     
-        })
-        console.log(user)
-    } catch (error) {
-        console.log(error.message)
-    }
+//         })
+//         console.log(user)
+//     } catch (error) {
+//         console.log(error.message)
+//     }
   
-}
+// }
 
-createUser()
+// createUser()
 
 // const updateUser = async () => {
 //     const user = await User.create({name: 'kaileon', age: 21})
@@ -44,3 +44,57 @@ createUser()
 // }
 
 // updateUser()
+
+// const userFind= async () => {  
+//     try {
+//         const user = await User.findById('62b1e43c2db346037a099d51')
+//         console.log(user)
+//     } catch (error) {
+        
+//     }
+// }
+
+// userFind()
+
+// const userDelete= async () => {  
+//     try {
+//         const user = await User.findByIdAndDelete('62b1d2f795a14d4b5e4a0212')
+//         console.log(user)
+//     } catch (error) {
+        
+//     }
+// }
+
+// userDelete()
+
+// const userQuery= async () => {  
+//     try {
+//         const user = await User.where('name').equals('kaileon')
+//         console.log(user)
+//     } catch (error) {
+        
+//     }
+// }
+
+// userQuery()
+
+const userQuery= async () => {  
+    try {
+        const user = await User.where('age')
+        .gt(15)
+        .where('name')
+        .equals('kashi')
+        .populate("bestFriend")
+        .limit(2)
+        // .select('age')
+        // user[0].bestFriend = "62b20187593cdf29b9d37246"
+        // await user[0].save()
+        console.log(user)
+    } catch (error) {
+        
+    }
+}
+
+userQuery()
+
+
